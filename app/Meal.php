@@ -6,15 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Meal extends Model
 {
-    protected $fillable = ['name', 'price', 'restaurant_id', 'course_type_id'];
-    
-    public function course_type()
-    {
-        return $this->hasOne('App\CourseType', 'foreign_key');
-    }
+    protected $fillable = ['name', 'restaurant_id', 'category_id', 'price'];
 
     public function restaurant()
     {
-        return $this->hasOne('App\Restaurant', 'foreign_key');
+        return $this->belongsTo('App\Restaurant');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Category');
+    }
+
+    public function menu_meals()
+    {
+        return $this->hasMany('App\MenuMeal');
     }
 }
+

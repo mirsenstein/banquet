@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Restaurant extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'address'];
 
-    public function meal()
+    public function meals()
     {
-        return $this->belongsTo('App\Meal');
+        return $this->hasMany('App\Meal');
+    }
+    public function drinks()
+    {
+        return $this->hasMany('App\Drink');
+    }
+    public function menus()
+    {
+    	return $this->hasMany('App\Menu');
     }
 }
